@@ -1,0 +1,44 @@
+header {
+    height: 72px;
+}
+
+main {
+    height: calc(100vh - 72px);
+}
+
+img {
+    width: 45px;
+    height: 45px;
+}
+
+.forecast {
+    width: 150px;
+}
+
+.uv-low {
+    background-color: #5cb85c;
+}
+
+.uv-medium {
+    background-color: yellow;
+}
+
+.uv-high {
+    background-color: orange;
+}
+
+.uv-very-high {
+    background-color: red;
+}
+
+.uv-extreme {
+    background-color: violet;
+}
+
+span.badge {
+    width: 60px;
+}
+
+#history-list li:hover {
+    cursor:pointer;
+}
