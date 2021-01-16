@@ -65,7 +65,7 @@ let generateCurrentWeatherEl = function(data) {
             ${data.cityName} (${data.date})
             <div class="d-inline-block" >
                 <img 
-                    src="http://openweathermap.org/img/wn/${data.weatherIcon}.png" 
+                    src="https://openweathermap.org/img/wn/${data.weatherIcon}.png" 
                     alt=${data.weatherDescription}
                     data-toggle="tooltip" 
                     data-placement="right" 
@@ -127,7 +127,7 @@ let generateFutureForecastCardEl = function(data) {
         .html(`
             <div >
                 <img 
-                    src="http://openweathermap.org/img/wn/${data.weatherIcon}.png" 
+                    src="https://openweathermap.org/img/wn/${data.weatherIcon}.png" 
                     alt=${data.weatherDescription}
                     data-toggle="tooltip" 
                     data-placement="right" 
