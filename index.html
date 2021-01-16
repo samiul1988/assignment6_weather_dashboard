@@ -8,10 +8,6 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css"> -->
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Staatliches&display=swap"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" /> -->
-
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
@@ -26,10 +22,12 @@
             Weather Dashboard
         </h1>
     </header>
+    <!-- App Container -->
     <main>
         <div class="container-fluid h-100">
             <div class="row h-100">
-                <div class="col-12 col-md-3 bg-light">
+                <!-- Sidebar Container -->
+                <aside class="col-12 col-md-3 bg-light">
                     <div class="mb-4">
                         <div class="mt-2 mb-3">
                             <h4>Search for a City:</h4>
@@ -45,105 +43,33 @@
                             </div>
                         </form>
                     </div>
-                    <div id="history-list">
-                        <!-- <ul class="list-group list-group-flush">
-                          <li class="list-group-item">Dapibus ac facilisis in</li>
-                          <li class="list-group-item">Vestibulum at eros</li>
-                          <li class="list-group-item">Vestibulum at eros</li>
-                          <li class="list-group-item">Cras justo odio</li>
-                          <li class="list-group-item">Dapibus ac facilisis in</li>
-                          <li class="list-group-item">Vestibulum at eros</li>
-                          <li class="list-group-item">Vestibulum at eros</li>
-                          <li class="list-group-item">Cras justo odio</li>
-                          <li class="list-group-item">Dapibus ac facilisis in</li>
-                          
-                        </ul> -->
-                    </div>
-                </div>
+                    <section>
+                        <h6 id="recent-search-header">Recent 10 searches:</h6>
+                        <div id="history-list"></div>
+                    </section>
+                </aside>
 
+                <!-- Weather Data Container -->
                 <div class="col-12 col-md-9">
                     <div class="h-100 d-flex flex-column justify-content-between">
-                        <div class="card w-100 my-3 flex-grow-1" id="current-weather-container">
-                            <!-- <div class="card-body">
-                                <h4 class="card-title mb-4">
-                                    Atlanta (8/15/2019)
-                                    <span class="fas fa-cloud"></span>
-                                </h4>
-                                <p class="card-text"> Temperature: 90.9 F </p>
-                                <p class="card-text">Humidity: 41%</p>
-                                <p class="card-text">Wind Speed: 4.7 MPH</p>
-                                <p class="card-text">UV Index: <span class="badge badge-danger p-2">9.49</span></p>
-                            </div> -->
-                        </div>
-                        <div class="my-5" id="future-weather-container">
-                            <!-- <h4>5-Day Forecast:</h4>
-                            <div class="d-flex justify-content-between">
-                                <div class="card bg-primary text-light forecast mr-2">
-                                    <div class="card-body p-2">
-                                        <h5 class=" mb-3">
-                                            8/15/2019
-                                        </h5>
-                                        <p><span class="fas fa-cloud"></span></p>
-                                        <p class="card-text"> Temp: 90.9 F </p>
-                                        <p class="card-text">Humidity: 41%</p>
-                                    </div>
-                                </div>
-                                <div class="card bg-primary text-light forecast mx-2">
-                                    <div class="card-body p-2">
-                                        <h5 class=" mb-3">
-                                            8/15/2019
-                                        </h5>
-                                        <p><span class="fas fa-cloud"></span></p>
-                                        <p class="card-text"> Temp: 90.9 F </p>
-                                        <p class="card-text">Humidity: 41%</p>
-                                    </div>
-                                </div>
-                                <div class="card bg-primary text-light forecast mx-2">
-                                    <div class="card-body p-2">
-                                        <h5 class=" mb-3">
-                                            8/15/2019
-                                        </h5>
-                                        <p><span class="fas fa-cloud"></span></p>
-                                        <p class="card-text"> Temp: 90.9 F </p>
-                                        <p class="card-text">Humidity: 41%</p>
-                                    </div>
-                                </div>
-                                <div class="card bg-primary text-light forecast mx-2">
-                                    <div class="card-body p-2">
-                                        <h5 class=" mb-3">
-                                            8/15/2019
-                                        </h5>
-                                        <p><span class="fas fa-cloud"></span></p>
-                                        <p class="card-text"> Temp: 90.9 F </p>
-                                        <p class="card-text">Humidity: 41%</p>
-                                    </div>
-                                </div>
-                                <div class="card bg-primary text-light forecast mx-2">
-                                    <div class="card-body p-2">
-                                        <h5 class=" mb-3">
-                                            8/15/2019
-                                        </h5>
-                                        <p><span class="fas fa-cloud"></span></p>
-                                        <p class="card-text"> Temp: 90.9 F </p>
-                                        <p class="card-text">Humidity: 41%</p>
-                                    </div>
-                                </div>
-                            </div> -->
-                        </div>
+                        <!-- Current Weather Section -->
+                        <section class="card w-100 my-3 flex-grow-1" id="current-weather-container">
+                        </section>
+                        <!-- Future Weather Section -->
+                        <section class="my-5" id="future-weather-container">
+                        </section>
                     </div> 
                 </div>
             </div>
         </div>
     </main>
     
-    <!-- jquery, popper and bootstrap   -->
+    <!-- sources for jquery, popper, bootstrap and momentjs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-
+    <!-- custom scripts -->
     <script src="./assets/js/script.js"></script>
 </body>
 

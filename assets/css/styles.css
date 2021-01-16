@@ -1,3 +1,4 @@
+/* Start - Styling of html elements */
 header {
     height: 72px;
 }
@@ -11,8 +12,17 @@ img {
     height: 45px;
 }
 
+/* End - Styling of html elements */
+
+/* START - current weather section */
+span.badge {
+    width: 60px;
+}
+/* END - current weather section */
+
+/* START - future weather section  */
 .forecast {
-    width: 150px;
+    width: 180px;
 }
 
 .uv-low {
@@ -35,10 +45,11 @@ img {
     background-color: violet;
 }
 
-span.badge {
-    width: 60px;
-}
+/* END - future weather section  */
 
+/* START - Sidebar  */
 #history-list li:hover {
     cursor:pointer;
 }
+
+/* END - Sidebar  */
