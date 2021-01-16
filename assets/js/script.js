@@ -23,19 +23,20 @@ let checkUvIndexSeverity = function(uvIndex) {
         uvStatus = "uv-low";
     } else if ( uvIndex > 2 && uvIndex <= 5 ) {
         uvStatus = "uv-medium";
-    } if ( uvIndex > 5 && uvIndex <= 7 ) {
+    } else if ( uvIndex > 5 && uvIndex <= 7 ) {
         uvStatus = "uv-high";
-    } if ( uvIndex > 7 && uvIndex <= 10 ) {
+    } else if ( uvIndex > 7 && uvIndex <= 10 ) {
         uvStatus = "uv-very-high";
-    } if ( uvIndex >= 11 ) {
+    } else if ( uvIndex >= 10 ) {
         uvStatus = "uv-extreme";
     }
+
     return uvStatus;
 }
 
 // helper function to format unix timestamp
-let getDateFromTimeStamp = function(timeStamp) {
-    return moment.unix(timeStamp).format("MM/DD/YYYY");
+let getDateFromTimeStamp = function(timeStamp, timezoneOffset) {
+    return moment.unix(timeStamp + timezoneOffset).utc().format("MM/DD/YYYY");
 }
 
 // helper function to find if an array contains a value
@@ -248,13 +249,13 @@ let getCityCoordinates = function(cityName) {
         fetch(urlForCoordinates)
             .then((response) => {
                 if (response.ok) {
-                    return response.json(); // convert valid response to json format
+                    return response.json(); // convert successful response to json format
                 } else {
-                    throw new Error(); // otherwise throw an error
+                    alert("Error: " + response.statusText);
                 }
             }).then((data) => {
                 if(!data){
-                    throw new Error(); // if there is no valid data, then throw an error
+                    return; // if there is no valid data, then throw an error
                 }
 
                 // store city location and name information to the global variable
@@ -279,20 +280,20 @@ let getWeatherData = function(coords) {
     fetch(urlForecast)
         .then((response) => {
             if (response.ok) {
-                return response.json(); // convert valid response to json format
+                return response.json(); // convert successful response to json format
             } else {
                 alert("Error: " + response.statusText);
                 cityItem = {};
-                return null; // return null for invalid response
             }
         })
         .then((fullData) => {
             if(!fullData){
-                return; // return withour further execution if response data is invalid
+                return; // return without further execution if response data is invalid
             }
+            
             // store valid current-weather data to the relevant object
             currentWeatherObj.cityName = coords.name;
-            currentWeatherObj.date = getDateFromTimeStamp(fullData.current.dt);
+            currentWeatherObj.date = getDateFromTimeStamp(fullData.current.dt, fullData.timezone_offset);
             currentWeatherObj.temperature = fullData.current.temp;
             currentWeatherObj.humidity = fullData.current.humidity;
             currentWeatherObj.windSpeed = fullData.current.wind_speed;
@@ -305,7 +306,7 @@ let getWeatherData = function(coords) {
             fullData.daily.map((item, index) => {
                 if ( index > 0 && index < 6 ) {
                     let tempObj = {};
-                    tempObj.date = getDateFromTimeStamp(item.dt);
+                    tempObj.date = getDateFromTimeStamp(item.dt, fullData.timezone_offset);
                     tempObj.weatherIcon = item.weather[0].icon;
                     tempObj.weatherDescription = item.weather[0].main;
                     tempObj.temperature = item.temp.max;
@@ -367,8 +368,16 @@ $("#form-search-city").submit(function(e){
         alert("Please use a valid city name"); // validation check
         return;
     }
-    
-    getCityCoordinates(cityName) // get city coordinates (lat, lon) which are required for next api call
+
+    // If the searched item is already in the search list
+    // then get location info from stored item and fetch weather data only
+    // else get location (lat, lon) information first, and then fetch weather data
+    let matchedItem = cityList.find(item => item.name.toLowerCase() === cityName.toLowerCase());
+
+    if(matchedItem !== undefined){
+        getWeatherData(matchedItem);
+    } else {
+        getCityCoordinates(cityName) // get city coordinates (lat, lon) which are required for next api call
         .then((data) => {
             getWeatherData(data);   // get weather data         
         })
@@ -377,6 +386,7 @@ $("#form-search-city").submit(function(e){
             alert("Unable to get data from Open Weather Map");
             clearFormInput();
         });
+    }
 });
 
 // tooltip event handler

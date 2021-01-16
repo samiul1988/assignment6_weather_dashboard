@@ -34,8 +34,13 @@ THEN I am again presented with current and future conditions for that city
 
 * Created the project from scratch.
 * Basic considerations were as follows:
-    * TBA.
-    * I have used 5 classes to categorize UV Indices. The classes are obtained from [Government of Canada UV Index Classification Source](https://www.canada.ca/en/environment-climate-change/services/weather-health/uv-index-sun-safety.html). The classes are:
+    * Used regular javascript, jquery, bootstrap, fontawesome icon and momentjs
+    * **Search Criteria**: When a city name is searched for the first time, it gets added to the top of the search list. I decided to store 10 recent searches in localStorage.  
+    * **Storage Consideration**: The storage contains city name and location (latitude, longitude) information of 10 recent searches. If the storage contains 10 items, and a different city name is searched, then the oldest item is removed.
+    * **API Considerations**: With free subscription, a limited API options are available in OpenWeatherMap ([See here](https://openweathermap.org/api)). The One Call API has the data required for the app, however, the current API format only accepts latitude and longitude as inputs (not city name). As such, I have used two APIs, one to get (lat, lon) information from a city name, and the second one is the one call API.
+        * Since the (latitude, longitude) information are stored locally for a city which is already searched, only one API is called for subsequent searches for that city.
+    * **Tooltips**: Tooltips are included for the weather icons and uv index numbers to describe the statuses with text.
+    * **UV Index**: I have used 5 classes to categorize UV Indices. The classes are obtained from [Government of Canada UV Index Classification Source](https://www.canada.ca/en/environment-climate-change/services/weather-health/uv-index-sun-safety.html). The classes are:
         * Low [UV Index: 0 - 2]
         * Moderate [UV Index: 3 - 5]
         * High [UV Index: 6 - 7]
